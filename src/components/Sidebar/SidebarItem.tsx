@@ -1,19 +1,21 @@
-import React from 'react';
 
-const SidebarItem = (props : any)=> {
+interface ItemSidebar {
+    active: boolean;
+    title: string;
+    icon: string;
+}
 
-    const active = props.active ? 'active' : ''
+const SidebarItem = (props: ItemSidebar) => {
+    const active = props.active ? 'active' : '';
 
     return (
         <div className="sidebar__item">
             <div className={`sidebar__item-inner ${active}`}>
                 <i className={props.icon}></i>
-                <span>
-                    {props.title}
-                </span>
+                <span>{props.title}</span>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default SidebarItem
+export default SidebarItem;

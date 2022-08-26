@@ -40,9 +40,9 @@
     box-shadow: var(--box-shadow);
     border-radius: var(--border-radius);
     overflow: hidden;
-    transform-origin: top right;
-    transform: scale(0);
-    transition: transform 0.3s ease 0s;
+    transform-origin: top right; // Hiện dropdown từ trên bên phải xuống
+    transform: scale(0); // Ẩn dropdown
+    transition: transform 0.3s ease 0s; // Set time cho hiện dropdown transform 0.3s
 }
 
 .dropdown__content.active {
