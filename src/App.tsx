@@ -9,12 +9,7 @@ function App() {
     const [test, setTest] = useState(true)
     return (
         <div className="App">
-            {/* <LayoutAdmin /> */}
-            {/* <Signin /> */}
-            {/* <Signup /> */}
-            {/* <RouteAuth /> */}
             {test ? <RouteAuth /> : <LayoutAdmin />}
-            
         </div>
     );
 }
