@@ -1,0 +1,106 @@
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);  // Làm mờ page
+
+    /* căn giữa box màn hình các con của cha */
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    .modal-container {
+        background-color: #fff;
+        width: 900px;
+        min-height: 200px;
+        position: relative;
+        /* Dùng keyfames để chuyển động từ trên xuống */
+        animation: modalFadeIn ease 0.3s;
+        /* Khi thu nhỏ nó vẫn hở 2 bên */
+        max-width: calc(100% - 32px);
+    }
+}
+
+.modal-header{
+    background-color: #009688;
+    font-family: Segoe UI,Arial,sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 130px;
+    letter-spacing: 4px;
+}
+
+.modal .modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.modal .modal-body {
+    padding: 15px 15px;
+}
+
+.modal-label {
+    /* block là mỗi đứa 1 hàng */
+    display: block;
+    margin: 15px 0;
+}
+
+.modal-input {
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.pay-btn {
+    margin: 16px 0;
+    padding: 16px;
+    width: 100%;
+    background-color: #009688;
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.pay-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modal-footer p {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.modal-footer a {
+    color: #2196F3;
+}
+
+.open {
+    display: flex;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

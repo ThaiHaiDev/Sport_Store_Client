@@ -15,6 +15,9 @@ const Table = (props: any) => {
     if (props.limit !== undefined) {
         let page = Math.floor(props.bodyData.length / Number(props.limit))
         pages = props.bodyData.length % Number(props.limit) === 0 ? page : page + 1
+        for(let i=0;i<pages;++i) {
+            range.push(i)
+        }
         // range = [...Object(pages).keys()]
     }
 

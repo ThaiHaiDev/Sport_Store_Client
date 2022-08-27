@@ -1,36 +1,21 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import './App.scss';
-import Navbar from './components/Navbar/Navbar';
-import RoutesCustom from './components/Routes';
-import Sidebar from './components/Sidebar/Sidebar';
-import globalSlice from './redux/globalSlice';
-import { RootState } from './redux/store';
+import LayoutAdmin from './pages/LayoutAdmin/LayoutAdmin';
+import Signin from './pages/Signin/Signin';
+import Signup from './pages/Signup/Signup';
+import RouteAuth from './routes';
 
 function App() {
-    const dispatch = useDispatch();
-    const themeReducer = useSelector((state: RootState) => state.global)
-
-    useEffect(() => {
-        const themeClass = localStorage.getItem('themeMode')
-
-        const colorClass = localStorage.getItem('colorMode')
-
-        dispatch(globalSlice.actions.setMode(themeClass))
-
-        dispatch(globalSlice.actions.setColor(colorClass))
-    }, [dispatch])
-
+    const [test, setTest] = useState(true)
     return (
-            <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
-                <Sidebar />
-                <div className="layout__content">
-                        <Navbar />
-                        <div className="layout__content-main">
-                            <RoutesCustom />
-                        </div>
-                </div>
-            </div>
+        <div className="App">
+            {/* <LayoutAdmin /> */}
+            {/* <Signin /> */}
+            {/* <Signup /> */}
+            {/* <RouteAuth /> */}
+            {test ? <RouteAuth /> : <LayoutAdmin />}
+            
+        </div>
     );
 }
 
