@@ -12,6 +12,15 @@
     background: #1877f2;
     overflow: hidden;
     justify-items: center;
+
+    .link__signup {
+        position: absolute;
+        z-index: 2;
+        bottom: 0;
+        right: 0;
+        margin-right: 15px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
 }
 
 .container__sign-in {

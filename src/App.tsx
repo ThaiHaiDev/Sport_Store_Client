@@ -1,15 +1,14 @@
-import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import './App.scss';
 import LayoutAdmin from './pages/LayoutAdmin/LayoutAdmin';
-import Signin from './pages/Signin/Signin';
-import Signup from './pages/Signup/Signup';
 import RouteAuth from './routes';
+import { RootState} from './redux/store'
 
 function App() {
-    const [test, setTest] = useState(true)
+    const user = useSelector((state: RootState) => state.user)
     return (
         <div className="App">
-            {test ? <RouteAuth /> : <LayoutAdmin />}
+            {user.current.isAdmin ? <LayoutAdmin /> : <RouteAuth />}
         </div>
     );
 }

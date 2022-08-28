@@ -5,7 +5,7 @@ import jwt_decode from "jwt-decode";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const getUserFromLocalStorage = (): any => {
-    return JSON.parse(localStorage.getItem('current_user') || '{}');
+    return JSON.parse(localStorage.getItem('user') || '{}');
 };
 
 const refreshToken = async() => {

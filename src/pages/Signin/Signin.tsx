@@ -1,15 +1,27 @@
 import './Signin.scss';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import userSlice from '../AuthPage/userSlice';
+import { SignInData } from '../../share/models/auth';
+import authApi from '../../services/authApi';
+
 
 const Signin = () => {
-    const { register, reset, handleSubmit, formState: { errors }} = useForm();
-    const [userInfo, setUserInfo] = useState();
-    const onSubmit = (data: any) => {
-        setUserInfo(data);
-        console.log(data);
-        reset();
+    const { register, reset, handleSubmit, formState: { errors }} = useForm<SignInData>();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const onSubmit = async (data: SignInData) => {
+        try {
+            await authApi.signIn(data).then((userData) => {
+                dispatch(userSlice.actions.login(userData.data))
+                reset();
+                navigate('/');
+            })
+        } catch (error) {
+            console.log(error)
+        }
+        
     };
     return (
         <div className="sign-in__page">
@@ -53,10 +65,10 @@ const Signin = () => {
                                 placeholder="Enter password"
                                 {...register('password', {
                                     required: 'Password is required',
-                                    minLength: {
-                                        value: 8,
-                                        message: 'Password must be at least 8 characters',
-                                    },
+                                    // minLength: {
+                                    //     value: 8,
+                                    //     message: 'Password must be at least 8 characters',
+                                    // },
                                     maxLength: {
                                         value: 16,
                                         message: 'Password must be less than 16 characters',
@@ -69,6 +81,7 @@ const Signin = () => {
                         <p>Forgot your password?</p>
                     </form>
                 </div>
+                <Link to='/signup' className='link__signup'>Create Accout</Link>
             </div>
         </div>
     );
