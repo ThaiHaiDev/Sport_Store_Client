@@ -5,6 +5,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         current: JSON.parse(localStorage.getItem('user') || '{}'),
+        token_current: localStorage.getItem('access_token') || '{}',
         settings: {}
     },
     reducers: {
@@ -12,6 +13,7 @@ const userSlice = createSlice({
             state.current = action.payload.user
             localStorage.setItem('access_token', action.payload.accessToken)
             localStorage.setItem('user', JSON.stringify(action.payload.user))
+            document.cookie = `refreshToken=${action.payload.refreshToken}`
         },
         refreshTokenSuccess(state, action) {
             localStorage.setItem('access_token', action.payload.accessToken)

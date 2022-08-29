@@ -1,49 +1,58 @@
 import axios from 'axios';
 import process from 'process';
-import jwt_decode from "jwt-decode";
+import jwt_decode from 'jwt-decode';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const getUserFromLocalStorage = (): any => {
-    return JSON.parse(localStorage.getItem('user') || '{}');
+    return localStorage.getItem('access_token') || '{}';
 };
 
-const refreshToken = async() => {
+const refreshToken = async () => {
     try {
-      const res = await axios.post("http://localhost:3001/refresh", axios.defaults.withCredentials = true)
-      return res.data;
+        const res = await axios.post('http://localhost:3001/api/v1/refresh', (axios.defaults.withCredentials = true));
+        return res.data;
     } catch (error) {
-      console.log(error)
+        console.log(error);
     }
-}
+};
 
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
-        'Accept': 'application/json',
-        'token': `Bearer ${getUserFromLocalStorage()?.accessToken}`
-    }
+        Accept: 'application/json',
+        token: `Bearer ${getUserFromLocalStorage()}`,
+    },
 });
 
 // Add a request interceptor
+// axiosClient.interceptors.request.use(
+//     async (config: any) => {
+//         let date = new Date();
+//         const decodedToken: any = jwt_decode(getUserFromLocalStorage());
+//         if (decodedToken.exp < date.getTime() / 1000) {
+//             const data = await refreshToken();
+//             const refreshUser = {
+//                 ...getUserFromLocalStorage(),
+//                 accessToken: data.accessToken,
+//             };
+//             //   dispath(stateSuccess(refreshUser)); // Dispath lại login hoặc logout
+//             config.headers['token'] = 'Bearer ' + data.accessToken;
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         return Promise.reject(error);
+//     },
+// );
+
 axiosClient.interceptors.request.use(
-    async (config: any) => {
-        let date = new Date();
-        const decodedToken:any = jwt_decode(getUserFromLocalStorage()?.accessToken);
-        if (decodedToken.exp < date.getTime() / 1000) {
-          const data = await refreshToken();
-          const refreshUser = {
-            ...getUserFromLocalStorage(),
-            accessToken: data.accessToken,
-          };
-        //   dispath(stateSuccess(refreshUser)); // Dispath lại login hoặc logout
-          config.headers["token"] = "Bearer " + data.accessToken;
-        }
-        return config;
-      },
-    (error) => {
-        return Promise.reject(error);
-    },
+  (config) => {
+      return config;
+  },
+  (error) => {
+      return Promise.reject(error);
+  },
 );
 
 // Add a response interceptor

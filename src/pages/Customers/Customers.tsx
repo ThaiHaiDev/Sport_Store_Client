@@ -19,8 +19,7 @@ const customerTableHead = [
 
 const renderHead = (item:any, index:number) => <th key={index}>{item}</th>
 
-
-const Customers = () => {
+const Customers = (props: any) => {
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
             <td>{item.id}</td>

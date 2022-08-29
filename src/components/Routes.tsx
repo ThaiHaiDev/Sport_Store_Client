@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import Customers from '../pages/Customers/Customers';
 import Dashboard from '../pages/Dashboard/Dashboard';
+import CustomersLayout from '../pages/Customers/CustomersLayout';
 
 const RoutesCustom = () => {
     return (
         <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/customers" element={<Customers />} />
+            <Route path="/customers" element={<CustomersLayout />} />
         </Routes>
     );
 };
