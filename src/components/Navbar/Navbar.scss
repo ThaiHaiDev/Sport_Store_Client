@@ -1,5 +1,5 @@
 .topnav {
-    padding: 30px;
+    padding: 0px 30px 10px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -8,7 +8,7 @@
 
 .topnav__search {
     position: relative;
-    height: 50px;
+    height: 40px;
     background-color: var(--main-bg);
     display: flex;
     align-items: center;
@@ -19,12 +19,18 @@
 
 .topnav__search > input {
     height: 100%;
-    width: 100%;
+    width: 300px;
     padding: 10px 60px 10px 20px;
     font-size: 1rem;
     border-radius: var(--border-radius);
     color: var(--txt-color);
     background-color: var(--main-bg);
+    transition-property: width;
+    transition-duration: 1s;
+}
+
+.topnav__search > input:hover {
+    width: 400px;
 }
 
 .topnav__search > i {

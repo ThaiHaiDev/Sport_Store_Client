@@ -18,13 +18,13 @@ import { CategoryProvider } from './contexts/usersContext';
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
-            <CategoryProvider>
-        <BrowserRouter>
+        <CategoryProvider>
+            <BrowserRouter>
                 <Provider store={store}>
                     <App />
                 </Provider>
-        </BrowserRouter>
-            </CategoryProvider>
+            </BrowserRouter>
+        </CategoryProvider>
     </React.StrictMode>,
 );
 
