@@ -7,9 +7,8 @@
     flex-direction: column;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     height: 100vh;
-    /* background: linear-gradient(45deg, #498dc5bd, #1e75bdbd), url("../images/bg_login.jpg") center; */
+    background: linear-gradient(45deg, #498dc5bd, #1e75bdbd), url("../../assets/images/bg_sport.jpg") center; 
     background-size: cover;
-    background: #1877f2;
     overflow: hidden;
     justify-items: center;
 
@@ -18,8 +17,15 @@
         z-index: 2;
         bottom: 0;
         right: 0;
-        margin-right: 15px;
+        margin-right: 25px;
+        margin-bottom: -10px;
         font-family: Arial, Helvetica, sans-serif;
+
+        .link {
+            padding-left: 4px;
+            font-size: 14px;
+            font-weight: bold;
+        }
     }
 }
 
@@ -78,6 +84,7 @@
 
     span {
         font-size: 12px;
+        margin-bottom: 10px;
     }
 
     a {
@@ -94,7 +101,7 @@
         cursor: pointer;
         border-radius: 20px;
         border: none;
-        background-color: #1e76bd;
+        background-color: #4f46e5;
         color: #ffffff;
         font-size: 12px;
         font-weight: bold;
@@ -102,6 +109,7 @@
         letter-spacing: 1px;
         text-transform: uppercase;
         transition: transform 50ms ease-in;
+        margin-top: 10px;
     }
 
     button:active {
@@ -110,6 +118,10 @@
 
     button:focus {
         outline: none;
+    }
+
+    button:hover {
+        background-color: #1e88e5;
     }
 
     form > label {
@@ -137,7 +149,7 @@
     }
 
     .social-container {
-        margin: 20px 0;
+        margin: 20px 0 10px 0;
     }
 
     .social-container img {

@@ -1,6 +1,7 @@
 import './Modal.scss'
 
 const Modal = (props:any) => {
+    console.log(props.dataUpdate)
     return (
         <div className={`modal ${props.open ? 'open' : ''}`}>
             <div className="modal-container">
@@ -16,15 +17,15 @@ const Modal = (props:any) => {
                 <div className="modal-body">
                     <label className="modal-label">
                         <i className="ti-shopping-cart"></i>
-                        Tickets, $15 per person
+                        First name
                     </label>
-                    <input id="quantity" type="text" className="modal-input" placeholder="How many?" />
+                    <input id="quantity" type="text" className="modal-input" placeholder="How many?" value={props.dataUpdate.firstName}/>
 
                     <label className="modal-label">
                         <i className="ti-email"></i>
-                        Send To
+                        Last name
                     </label>
-                    <input id="emailid" type="email" className="modal-input" placeholder="Enter email" />
+                    <input id="emailid" type="email" className="modal-input" placeholder="Enter email" value={props.dataUpdate.lastName}/>
 
                     <button className="pay-btn">PAY</button>
                 </div>

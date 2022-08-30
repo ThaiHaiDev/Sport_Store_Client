@@ -1,6 +1,7 @@
 import './Signup.scss';
 import { useForm, ValidationRule } from 'react-hook-form';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const regexPassword: ValidationRule<RegExp> = /^(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=.]).*$/;
 const Signup = () => {
@@ -18,7 +19,8 @@ const Signup = () => {
                 <div className="form-container__sign-up sign-up-container">
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <h2>Create An Account</h2>
-                        <label>
+                        <label> 
+                            <p>{errors.firstname ? '' : 'First Name'}</p>
                             <input
                                 className="signup__form-input"
                                 placeholder="Enter First Name"
@@ -30,14 +32,11 @@ const Signup = () => {
                                     },
                                 })}
                             />
-                            {errors.firstname && (
-                                <span className="message_error">{`${
-                                    errors.firstname && errors.firstname?.message
-                                }`}</span>
-                            )}
+                            <span className="message_error">{`${errors.firstname ? errors.firstname?.message : ''}`}</span>
                         </label>
 
-                        <label>
+                        <label> 
+                            <p>{errors.lastname ? '' : 'Last Name'}</p>
                             <input
                                 className="signup__form-input"
                                 placeholder="Enter Last Name"
@@ -57,14 +56,16 @@ const Signup = () => {
                         </label>
 
                         <label>
+                            <p>{errors.email ? '' : 'Email'}</p>
                             <input
                                 className="signup__form-input"
-                                type="email"
                                 placeholder="Enter email"
                                 {...register('email', {
                                     required: 'Email is required',
-                                    minLength: 6,
-                                    maxLength: 50,
+                                    pattern: {
+                                        value: /^\S+@\S+$/i,
+                                        message: 'This is not a valid email',
+                                    },
                                 })}
                             />
                             {errors.email && (
@@ -73,6 +74,7 @@ const Signup = () => {
                         </label>
 
                         <label>
+                            <p>{errors.password ? '' : 'Password'}</p>
                             <input
                                 className="signup__form-input"
                                 type="password"
@@ -101,6 +103,7 @@ const Signup = () => {
                             )}
                         </label>
                         <label>
+                            <p>{errors.password_confirmation ? '' : 'Confirm password'}</p>
                             <input
                                 className="signup__form-input"
                                 type="password"
@@ -120,13 +123,11 @@ const Signup = () => {
                                 }`}</span>
                             )}
                         </label>
-                        <label>
-                            <input type="checkbox" />
-                            <span className="message_error"></span>
-                        </label>
-
                         <button type="submit">Sign Up</button>
                     </form>
+                    <div className="link__signin">
+                        <p>You already an account ?<Link to='/signin' className='link'>Sign in</Link></p>
+                    </div>
                 </div>
             </div>
         </div>

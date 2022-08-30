@@ -4,8 +4,12 @@ import jwt_decode from 'jwt-decode';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const getUserFromLocalStorage = (): any => {
+const getAccessTokenFromLocalStorage = (): any => {
     return localStorage.getItem('access_token') || '{}';
+};
+
+const getUserFromLocalStorage = (): any => {
+    return localStorage.getItem('user') || '{}';
 };
 
 const refreshToken = async () => {
@@ -21,38 +25,30 @@ const axiosClient = axios.create({
     baseURL: API_BASE_URL,
     headers: {
         Accept: 'application/json',
-        token: `Bearer ${getUserFromLocalStorage()}`,
+        token: `Bearer ${getAccessTokenFromLocalStorage()}`,
     },
 });
 
 // Add a request interceptor
-// axiosClient.interceptors.request.use(
-//     async (config: any) => {
-//         let date = new Date();
-//         const decodedToken: any = jwt_decode(getUserFromLocalStorage());
-//         if (decodedToken.exp < date.getTime() / 1000) {
-//             const data = await refreshToken();
-//             const refreshUser = {
-//                 ...getUserFromLocalStorage(),
-//                 accessToken: data.accessToken,
-//             };
-//             //   dispath(stateSuccess(refreshUser)); // Dispath lại login hoặc logout
-//             config.headers['token'] = 'Bearer ' + data.accessToken;
-//         }
-//         return config;
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     },
-// );
-
 axiosClient.interceptors.request.use(
-  (config) => {
-      return config;
-  },
-  (error) => {
-      return Promise.reject(error);
-  },
+    async (config: any) => {
+        let date = new Date();
+        const decodedToken: any = jwt_decode(getAccessTokenFromLocalStorage());
+        if (decodedToken.exp < date.getTime() / 1000) {
+            const data = await refreshToken();
+            const refreshUser = {
+                user: getUserFromLocalStorage(),
+                accessToken: data.accessToken,
+            };
+            localStorage.setItem('access_token', refreshUser.accessToken)
+            localStorage.setItem('user', JSON.stringify(refreshUser.user))
+            config.headers['token'] = 'Bearer ' + data.accessToken;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    },
 );
 
 // Add a response interceptor

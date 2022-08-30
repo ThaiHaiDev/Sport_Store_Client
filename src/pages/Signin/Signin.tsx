@@ -1,6 +1,6 @@
 import './Signin.scss';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import userSlice from '../AuthPage/userSlice';
 import { SignInData } from '../../share/models/auth';
@@ -10,13 +10,12 @@ import authApi from '../../services/authApi';
 const Signin = () => {
     const { register, reset, handleSubmit, formState: { errors }} = useForm<SignInData>();
     const dispatch = useDispatch();
-    const navigate = useNavigate();
     const onSubmit = async (data: SignInData) => {
         try {
             await authApi.signIn(data).then((userData) => {
                 dispatch(userSlice.actions.login(userData.data))
                 reset();
-                navigate('/');
+                document.location = '/';
             })
         } catch (error) {
             console.log(error)
@@ -81,7 +80,9 @@ const Signin = () => {
                         <p>Forgot your password?</p>
                     </form>
                 </div>
-                <Link to='/signup' className='link__signup'>Create Accout</Link>
+                <div className="link__signup">
+                        <p>Don't have an account ?<Link to='/signup' className='link'>Sign up</Link></p>
+                </div>
             </div>
         </div>
     );
