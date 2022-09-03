@@ -1,8 +1,9 @@
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import userApi from '../../../services/userApi';
 import './AddCustomer.scss';
 import { AxiosError } from 'axios';
 import { AddUserErrorResponse } from '../../../share/models/user';
+import { UserContext } from '../../../contexts/usersContext';
 
 const AddCustomer = () => {
     const [firstName, setFirstName] = useState<string>('')
@@ -11,6 +12,8 @@ const AddCustomer = () => {
     const [phone, setPhone] = useState<string>('')
     const [address, setAddress] = useState<string>('')
     const [role, setRole] = useState<string | undefined | number>('customer');
+
+    const userContext = useContext(UserContext)
     
     const changeCategoryHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         setRole(event.currentTarget?.value);
@@ -39,6 +42,7 @@ const AddCustomer = () => {
     // Submit 
     const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        const resetForm = event.target as HTMLFormElement;
         const dataUserNew = {
             firstName,
             lastName,
@@ -48,8 +52,11 @@ const AddCustomer = () => {
             address,
             isAdmin: role
         }
+        
         userApi.addUser(dataUserNew)
             .then((data) => {
+                userContext?.setUserList([...userContext.userList, data])
+                resetForm.reset();
                 alert('Add success')
             })
             .catch((error: AxiosError<AddUserErrorResponse>) => {
@@ -82,7 +89,6 @@ const AddCustomer = () => {
                                 id="last"
                                 // value='test'
                                 placeholder="Last name"
-                                autoFocus
                                 onChange={lastChangeHandler}
                                 required
                                 // ref={props.titleRef}
@@ -93,7 +99,6 @@ const AddCustomer = () => {
                                 id="email"
                                 // value='test'
                                 placeholder="Email name"
-                                autoFocus
                                 onChange={emailChangeHandler}
                                 required
                                 // ref={props.titleRef}
@@ -104,7 +109,6 @@ const AddCustomer = () => {
                                 id="phone"
                                 // value='test'
                                 placeholder="Phone"
-                                autoFocus
                                 onChange={phoneChangeHandler}
                                 required
                                 // ref={props.titleRef}
@@ -115,7 +119,6 @@ const AddCustomer = () => {
                                 id="address"
                                 // value='test'
                                 placeholder="Address"
-                                autoFocus
                                 onChange={addressChangeHandler}
                                 required
                                 // ref={props.titleRef}

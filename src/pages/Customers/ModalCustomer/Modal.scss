@@ -20,20 +20,24 @@
         animation: modalFadeIn ease 0.3s;
         /* Khi thu nhỏ nó vẫn hở 2 bên */
         max-width: calc(100% - 32px);
+        
+        .input_add-user_email:disabled {
+            background-color: transparent;
+        }
     }
 }
 
 .modal-header{
     background-color: #009688;
-    font-family: Segoe UI,Arial,sans-serif;
     font-size: 30px;
     font-weight: 400;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 130px;
+    height: auto;
     letter-spacing: 4px;
+    padding: 20px;
 }
 
 .modal .modal-close {

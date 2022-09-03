@@ -4,3 +4,10 @@ export interface AddUserErrorResponse {
         user?: string;
     };
 }
+
+export interface UpdateUserErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}

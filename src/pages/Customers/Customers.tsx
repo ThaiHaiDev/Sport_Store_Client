@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import Table from '../../components/Table/Table'
 import Modal from './ModalCustomer/Modal'
 import userApi from '../../services/userApi'
 import './Customers.scss'
 import AddCustomer from './FormCustomer/AddCustomer'
+import { UserContext } from '../../contexts/usersContext'
+import { useNavigate } from 'react-router-dom'
 
 const customerTableHead = [
     '',
@@ -21,8 +23,11 @@ const customerTableHead = [
 const renderHead = (item:any, index:number) => <th key={index}>{item}</th>
 
 const Customers = (props: any) => {
-    const [onAddUser, setOnAddUser] = useState<Boolean>(true)
-    const [userUpdate, setUserUpdate] = useState()
+    const [onAddUser, setOnAddUser] = useState<Boolean>(false)
+    const [userUpdate, setUserUpdate] = useState(null)
+    const userContext = useContext(UserContext)
+
+    const navigate = useNavigate()
 
     const renderBody = (item:any, index:any) => (
         <tr key={index}>
@@ -40,13 +45,18 @@ const Customers = (props: any) => {
 
     const handleDeleteUser = (idUser: string) => {
         userApi.deleteUser(idUser).then(() => {
-            alert(`Delete ${idUser}`)
+            userContext?.setUserList(
+                userContext?.userList.filter((user:any) => {
+                    return user._id !== idUser;
+                }),
+            )
+            navigate('/')
         })
     }
 
-    const handleUpdateUser = (user: any) => {
+    const handleUpdateUser = async(user: any) => {
+        await setUserUpdate(user)
         setOnModal(true)
-        setUserUpdate(user)
     }
 
     const [onModal, setOnModal] = useState(false)
@@ -66,7 +76,7 @@ const Customers = (props: any) => {
                     <p className='text'>{onAddUser ? 'List user' : 'Add user'}</p>
                 </button>
             </div>
-            <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />
+            {userUpdate && <Modal open={onModal} onClick={handleSetModal} dataUpdate={userUpdate} />}
             {!onAddUser ? <div className="row">
                 <div className="col-12">
                     <div className="card">

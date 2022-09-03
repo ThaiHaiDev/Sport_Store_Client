@@ -1,22 +1,22 @@
 import { createContext, useState } from 'react';
 // import { CategoryResponse } from '../shared/models/category';
 
-interface CategoryContext {
-    categoryList: any;
-    setCategoryList: (categoryList: any) => void;
+interface UserContextType {
+    userList: any;
+    setUserList: (userList: any) => void;
 }
 
-const CategoryContext = createContext<CategoryContext | null>(null);
+const UserContext = createContext<UserContextType | null>(null);
 
-const CategoryProvider = ({ children }: any) => {
-    const [categoryList, setCategoryList] = useState<any>([]);
+const UserProvider = ({ children }: any) => {
+    const [userList, setUserList] = useState<any>([]);
 
     const value = {
-        categoryList,
-        setCategoryList,
+        userList,
+        setUserList,
     };
 
-    return <CategoryContext.Provider value={value as CategoryContext}>{children}</CategoryContext.Provider>;
+    return <UserContext.Provider value={value as UserContextType}>{children}</UserContext.Provider>;
 };
 
-export { CategoryContext, CategoryProvider };
+export { UserContext, UserProvider };

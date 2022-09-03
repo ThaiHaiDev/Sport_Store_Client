@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
+import { UserContext } from "../../contexts/usersContext";
 import userApi from "../../services/userApi";
-import Dashboard from "../Dashboard/Dashboard";
 import Customers from "./Customers";
 
 const CustomersLayout = () => {
-    const [dataUsers, setDataUsers] = useState([])
+    const userContext = useContext(UserContext)
 
     useEffect(() => {
         userApi.getAllUsers().then((data) => {
-            setDataUsers(data)
+            userContext?.setUserList(data)
         });
     }, []);
     
     return (
         <div>
-            {dataUsers.length !== 0 && <Customers data={dataUsers} />}
+            {userContext?.userList.length !== 0 && <Customers data={userContext?.userList} />}
         </div>
     )
 }
