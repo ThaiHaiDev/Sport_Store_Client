@@ -10,7 +10,7 @@ const userSlice = createSlice({
     },
     reducers: {
         login(state, action) {
-            state.current = action.payload.user
+            state.current = JSON.stringify(action.payload.user)
             localStorage.setItem('access_token', action.payload.accessToken)
             localStorage.setItem('user', JSON.stringify(action.payload.user))
             document.cookie = `refreshToken=${action.payload.refreshToken}`

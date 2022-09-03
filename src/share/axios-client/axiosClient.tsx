@@ -1,6 +1,7 @@
 import axios from 'axios';
 import process from 'process';
 import jwt_decode from 'jwt-decode';
+import { getCookie } from 'cookies-next';
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
@@ -9,7 +10,7 @@ const getAccessTokenFromLocalStorage = (): any => {
 };
 
 const getUserFromLocalStorage = (): any => {
-    return localStorage.getItem('user') || '{}';
+    return JSON.parse(localStorage.getItem('user') || '{}');
 };
 
 const refreshToken = async () => {
@@ -20,6 +21,8 @@ const refreshToken = async () => {
         console.log(error);
     }
 };
+
+
 
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
@@ -33,16 +36,20 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
     async (config: any) => {
         let date = new Date();
+        const tokenRefresh = getCookie('refreshToken');
+        const decodedTokenRefress: any = jwt_decode(String(tokenRefresh));
         const decodedToken: any = jwt_decode(getAccessTokenFromLocalStorage());
-        if (decodedToken.exp < date.getTime() / 1000) {
-            const data = await refreshToken();
-            const refreshUser = {
-                user: getUserFromLocalStorage(),
-                accessToken: data.accessToken,
-            };
-            localStorage.setItem('access_token', refreshUser.accessToken)
-            localStorage.setItem('user', JSON.stringify(refreshUser.user))
-            config.headers['token'] = 'Bearer ' + data.accessToken;
+        if (decodedTokenRefress.exp < date.getTime() / 1000) {
+            if (decodedToken.exp < date.getTime() / 1000) {
+                const data = await refreshToken();
+                const refreshUser = {
+                    user: getUserFromLocalStorage(),
+                    accessToken: data.accessToken,
+                };
+                localStorage.setItem('access_token', refreshUser.accessToken)
+                localStorage.setItem('user', JSON.stringify(refreshUser.user))
+                config.headers['token'] = 'Bearer ' + data.accessToken;
+            }
         }
         return config;
     },
