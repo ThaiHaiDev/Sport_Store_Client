@@ -4,6 +4,7 @@ import { UserContext } from '../../../contexts/usersContext';
 import { AxiosError } from 'axios';
 import { UpdateUserErrorResponse } from '../../../share/models/user';
 import userApi from '../../../services/userApi';
+import { useNavigate } from 'react-router-dom';
 
 interface ModalUserProps {
     open: boolean;
@@ -18,6 +19,7 @@ const Modal = (props: any) => {
     const [phone, setPhone] = useState<string>('');
     const [address, setAddress] = useState<string>('');
     const [role, setRole] = useState<string | undefined | number>('customer');
+    const navigate = useNavigate();
 
     useEffect(() => {
         setFirstName(props.dataUpdate.firstName);
@@ -27,8 +29,6 @@ const Modal = (props: any) => {
         setAddress(props.dataUpdate.address);
         setRole(props.dataUpdate.isAdmin);
     }, [props.dataUpdate]);
-
-    const userContext = useContext(UserContext);
 
     const changeCategoryHandler = (event: ChangeEvent<HTMLSelectElement>) => {
         setRole(event.currentTarget?.value);
@@ -71,12 +71,11 @@ const Modal = (props: any) => {
         userApi
             .updateUser(dataUserNew, props?.dataUpdate._id)
             .then(() => {
-                // userContext?.setUserList([...userContext.userList, data]);
                 resetForm.reset();
-                alert('Add success');
+                alert('Update success');
+                navigate('/')
             })
             .catch((error: AxiosError<UpdateUserErrorResponse>) => {
-                console.log(error);
                 alert(error.response?.data);
             });
     };
@@ -152,10 +151,13 @@ const Modal = (props: any) => {
                             required
                         />
 
-                        <select name="role" className="select" onChange={changeCategoryHandler}>
-                            <option value={role}>{role}</option>
-                            {role === 'manager' ? <option value="customer">customer</option> : <option value="manager">manager</option>}
-                        </select>
+                        <div className='role__choose'>
+                            <label className="modal-label">Role: </label>
+                            <select name="role" className="select" onChange={changeCategoryHandler}>
+                                <option value={role}>{role}</option>
+                                {role === 'manager' ? <option value="customer">customer</option> : <option value="manager">manager</option>}
+                            </select>
+                        </div>
 
                         <button className="pay-btn" type="submit">
                             PAY

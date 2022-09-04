@@ -39,17 +39,20 @@ axiosClient.interceptors.request.use(
         const tokenRefresh = getCookie('refreshToken');
         const decodedTokenRefress: any = jwt_decode(String(tokenRefresh));
         const decodedToken: any = jwt_decode(getAccessTokenFromLocalStorage());
-        if (decodedTokenRefress.exp < date.getTime() / 1000) {
-            if (decodedToken.exp < date.getTime() / 1000) {
-                const data = await refreshToken();
-                const refreshUser = {
-                    user: getUserFromLocalStorage(),
-                    accessToken: data.accessToken,
-                };
-                localStorage.setItem('access_token', refreshUser.accessToken)
-                localStorage.setItem('user', JSON.stringify(refreshUser.user))
-                config.headers['token'] = 'Bearer ' + data.accessToken;
-            }
+        // console.log(decodedTokenRefress.exp, date.getTime() / 1000)
+        // if (decodedTokenRefress.exp < date.getTime() / 1000) {
+            
+        // }
+
+        if (decodedToken.exp < date.getTime() / 1000) {
+            const data = await refreshToken();
+            const refreshUser = {
+                user: getUserFromLocalStorage(),
+                accessToken: data.accessToken,
+            };
+            localStorage.setItem('access_token', refreshUser.accessToken)
+            localStorage.setItem('user', JSON.stringify(refreshUser.user))
+            config.headers['token'] = 'Bearer ' + data.accessToken;
         }
         return config;
     },

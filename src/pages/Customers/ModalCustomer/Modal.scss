@@ -21,8 +21,18 @@
         /* Khi thu nhỏ nó vẫn hở 2 bên */
         max-width: calc(100% - 32px);
         
-        .input_add-user_email:disabled {
+        .modal-input_email {
             background-color: transparent;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .role__choose {
+            display: flex;
+
+            .select {
+                margin-left: 10px;
+            }
         }
     }
 }
@@ -56,13 +66,14 @@
 .modal-label {
     /* block là mỗi đứa 1 hàng */
     display: block;
-    margin: 15px 0;
+    margin: 5px 0;
+    font-weight: bold;
 }
 
 .modal-input {
     padding: 8px;
     width: 100%;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .pay-btn {

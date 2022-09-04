@@ -1,8 +1,8 @@
 [
     {
-        "icon": "bx bx-shopping-bag",
+        "icon": "bx bx-user",
         "count": "1,995",
-        "title": "Total sales"
+        "title": "Total users"
     },
     {
         "icon": "bx bx-cart",
