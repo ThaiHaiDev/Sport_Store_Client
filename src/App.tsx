@@ -8,7 +8,7 @@ function App() {
     const user = useSelector((state: RootState) => state.user)
     return (
         <div className="App">
-            {user.current.isAdmin ? <LayoutAdmin /> : <RouteAuth />}
+            {user.current.isAdmin === 'admin' ? <LayoutAdmin /> : <RouteAuth />}
         </div>
     );
 }

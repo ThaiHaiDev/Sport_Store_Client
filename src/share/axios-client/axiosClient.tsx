@@ -22,7 +22,10 @@ const refreshToken = async () => {
     }
 };
 
-
+const routerPrivate = async () => {
+    await localStorage.clear();
+    window.location.href = '/signin';
+}
 
 const axiosClient = axios.create({
     baseURL: API_BASE_URL,
@@ -37,24 +40,29 @@ axiosClient.interceptors.request.use(
     async (config: any) => {
         let date = new Date();
         const tokenRefresh = getCookie('refreshToken');
-        const decodedTokenRefress: any = jwt_decode(String(tokenRefresh));
         const decodedToken: any = jwt_decode(getAccessTokenFromLocalStorage());
-        // console.log(decodedTokenRefress.exp, date.getTime() / 1000)
-        // if (decodedTokenRefress.exp < date.getTime() / 1000) {
-            
-        // }
 
-        if (decodedToken.exp < date.getTime() / 1000) {
-            const data = await refreshToken();
-            const refreshUser = {
-                user: getUserFromLocalStorage(),
-                accessToken: data.accessToken,
-            };
-            localStorage.setItem('access_token', refreshUser.accessToken)
-            localStorage.setItem('user', JSON.stringify(refreshUser.user))
-            config.headers['token'] = 'Bearer ' + data.accessToken;
+        if (tokenRefresh !== undefined) {
+            const decodedTokenRefress: any = jwt_decode(String(tokenRefresh));
+            if(decodedTokenRefress.exp > date.getTime() / 1000) {  // Check nếu hạn của refreshToken còn lớn hơn time thực thì do refresh
+                if (decodedToken.exp < date.getTime() / 1000) {  // Check nếu hạn của accessToken hết hạn là bé hơn time thực thì do refresh
+                    const data = await refreshToken();
+                    const refreshUser = {
+                        user: getUserFromLocalStorage(),
+                        accessToken: data.accessToken,
+                    };
+                    localStorage.setItem('access_token', refreshUser.accessToken)
+                    localStorage.setItem('user', JSON.stringify(refreshUser.user))
+                    config.headers['token'] = 'Bearer ' + data.accessToken;
+                }
+                return config;
+            } else {
+                routerPrivate();
+            }
+        } else {
+            routerPrivate();
         }
-        return config;
+
     },
     (error) => {
         return Promise.reject(error);
