@@ -1,0 +1,121 @@
+.modalCategory {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);  // Làm mờ page
+
+    /* căn giữa box màn hình các con của cha */
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    .modalCategory-container {
+        background-color: #fff;
+        width: 900px;
+        min-height: 200px;
+        position: relative;
+        /* Dùng keyfames để chuyển động từ trên xuống */
+        animation: modalCategoryFadeIn ease 0.3s;
+        /* Khi thu nhỏ nó vẫn hở 2 bên */
+        max-width: calc(100% - 32px);
+        
+        .modalCategory-input_email {
+            background-color: transparent;
+            font-size: 16px;
+            padding: 8px;
+        }
+
+        .role__choose {
+            display: flex;
+
+            .select {
+                margin-left: 10px;
+            }
+        }
+    }
+}
+
+.modalCategory-header{
+    background-color: #009688;
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    letter-spacing: 4px;
+    padding: 20px;
+}
+
+.modalCategory .modalCategory-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    padding: 12px;
+    cursor: pointer;
+}
+
+.modalCategory .modalCategory-body {
+    padding: 15px 15px;
+}
+
+.modalCategory-label {
+    /* block là mỗi đứa 1 hàng */
+    display: block;
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+.modalCategory-input {
+    padding: 8px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.pay-btn {
+    margin: 16px 0;
+    padding: 16px;
+    width: 100%;
+    background-color: #009688;
+    cursor: pointer;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.pay-btn:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.modalCategory-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.modalCategory-footer p {
+    margin-right: 20px;
+    margin-bottom: 10px;
+}
+
+.modalCategory-footer a {
+    color: #2196F3;
+}
+
+.open {
+    display: flex;
+}
+
+@keyframes modalCategoryFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-150px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

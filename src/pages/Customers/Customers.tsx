@@ -38,8 +38,8 @@ const Customers = (props: any) => {
             <td>{item.phone}</td>
             <td>{item.status ? 'false' : 'true'}</td>
             <td>{item.isAdmin}</td>
-            <td onClick={() => handleDeleteUser(item._id)} className="btn">X</td>
-            <td onClick={() => handleUpdateUser(item)} className="btn">U</td>
+            <td onClick={() => handleDeleteUser(item._id)} className="btn"><img src="https://img.icons8.com/plasticine/100/000000/filled-trash.png" alt='icon__delete' className='icon__btn'/></td>
+            <td onClick={() => handleUpdateUser(item)} className="btn"><img src="https://img.icons8.com/color/48/000000/edit--v1.png" alt='icon__update' className='icon__btn'/></td>
         </tr>
     )
 

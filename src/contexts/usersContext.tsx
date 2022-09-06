@@ -10,7 +10,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | null>(null);
 
 const UserProvider = ({ children }: any) => {
-    const [userList, setUserList] = useState<any>([]);
+    const [userList, setUserList] = useState<UserResponse[]>([]);
 
     const value = {
         userList,

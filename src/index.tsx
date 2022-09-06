@@ -15,17 +15,23 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { UserProvider } from './contexts/usersContext';
 import { SearchProvider } from './contexts/searchContext';
+import { CategoryProvider } from './contexts/categoriesContext';
+import { ProductProvider } from './contexts/productsContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
     <React.StrictMode>
         <SearchProvider>
             <UserProvider>
-                <BrowserRouter>
-                    <Provider store={store}>
-                        <App />
-                    </Provider>
-                </BrowserRouter>
+                <CategoryProvider>
+                    <ProductProvider>
+                        <BrowserRouter>
+                            <Provider store={store}>
+                                <App />
+                            </Provider>
+                        </BrowserRouter>
+                    </ProductProvider>
+                </CategoryProvider>
             </UserProvider>
         </SearchProvider>
     </React.StrictMode>,

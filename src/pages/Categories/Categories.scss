@@ -1,8 +1,8 @@
-.header__customer {
+.header__category {
     display: flex;
     justify-content: space-between;
 
-    .btn__add-customer {
+    .btn__add-category {
         height: 50%;
         padding: 7px 35px;
         background: #43a047;
@@ -23,7 +23,7 @@
         }
     }
 
-    .btn__add-customer:hover {
+    .btn__add-category:hover {
         background: #00c853;
     }
 }

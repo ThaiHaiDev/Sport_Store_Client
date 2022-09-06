@@ -1,8 +1,8 @@
-.header__customer {
+.header__product {
     display: flex;
     justify-content: space-between;
 
-    .btn__add-customer {
+    .btn__add-product {
         height: 50%;
         padding: 7px 35px;
         background: #43a047;
@@ -12,7 +12,7 @@
         border-radius: 8px;
 
         .icon {
-            font-size: 21px;
+            font-size: 18px;
             margin-right: 8px;
             margin-left: -5px;
         }
@@ -23,7 +23,7 @@
         }
     }
 
-    .btn__add-customer:hover {
+    .btn__add-product:hover {
         background: #00c853;
     }
 }
