@@ -1,9 +1,10 @@
 import { createContext, useState } from 'react';
+import { UserResponse } from '../share/models/user';
 // import { CategoryResponse } from '../shared/models/category';
 
 interface UserContextType {
-    userList: any;
-    setUserList: (userList: any) => void;
+    userList: UserResponse[] | [];
+    setUserList: (userList: UserResponse[]) => void;
 }
 
 const UserContext = createContext<UserContextType | null>(null);

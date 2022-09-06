@@ -2,7 +2,7 @@ import './Modal.scss';
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../contexts/usersContext';
 import { AxiosError } from 'axios';
-import { UpdateUserErrorResponse } from '../../../share/models/user';
+import { AddUserRequest, UpdateUserErrorResponse } from '../../../share/models/user';
 import userApi from '../../../services/userApi';
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const Modal = (props: ModalUserProps) => {
     const [email, setEmail] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [address, setAddress] = useState<string>('');
-    const [role, setRole] = useState<string | undefined | number>('customer');
+    const [role, setRole] = useState<string>('customer');
     const navigate = useNavigate();
     const userContext = useContext(UserContext);
 
@@ -56,18 +56,20 @@ const Modal = (props: ModalUserProps) => {
     };
 
     const Update = (key:any, data:any) => {
-        for (var i = 0; i < userContext?.userList.length; i++) {
-            if (userContext?.userList[i]._id === key) {
-                // Delete user cũ
-                userContext?.setUserList(
-                    userContext?.userList.filter((user:any) => {
-                        return user._id !== key;
-                    }),
-                )
-
-                // Add user new update
-                userContext?.setUserList([data, ...userContext.userList])
-                break;
+        if(userContext?.userList.length) {
+            for (var i = 0; i < userContext?.userList.length; i++) {
+                if (userContext?.userList[i]._id === key) {
+                    // Delete user cũ
+                    userContext?.setUserList(
+                        userContext?.userList.filter((user:any) => {
+                            return user._id !== key;
+                        }),
+                    )
+    
+                    // Add user new update
+                    userContext?.setUserList([data, ...userContext.userList])
+                    break;
+                }
             }
         }
     }
@@ -77,7 +79,7 @@ const Modal = (props: ModalUserProps) => {
     const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const resetForm = event.target as HTMLFormElement;
-        const dataUserNew = {
+        const dataUserNew : AddUserRequest = {
             firstName,
             lastName,
             password: '123',

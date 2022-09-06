@@ -1,12 +1,18 @@
-import React, {useState} from 'react'
-
+import React, { useContext, useEffect, useState } from 'react'
+import { SearchContext } from '../../contexts/searchContext';
 import './Table.scss'
 
 const Table = (props: any) => {
-
+    const searchContext = useContext(SearchContext);
     const initDataShow = props.limit && props.bodyData ? props.bodyData.slice(0, Number(props.limit)) : props.bodyData
-
+    // initDataShow
     const [dataShow, setDataShow] = useState(initDataShow)
+    
+    useEffect(() => {
+        if(searchContext?.searchText !== '') {
+            setDataShow(initDataShow)
+        }
+    }, [searchContext?.searchText]);
 
     let pages = 1
 
@@ -18,7 +24,6 @@ const Table = (props: any) => {
         for(let i=0;i<pages;++i) {
             range.push(i)
         }
-        // range = [...Object(pages).keys()]
     }
 
     const [currPage, setCurrPage] = useState(0)

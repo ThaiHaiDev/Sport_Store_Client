@@ -1,20 +1,29 @@
 import { useContext, useEffect } from "react";
+import { SearchContext } from "../../contexts/searchContext";
 import { UserContext } from "../../contexts/usersContext";
 import userApi from "../../services/userApi";
 import Customers from "./Customers";
 
 const CustomersLayout = () => {
-    const userContext = useContext(UserContext)
+    const usersContext = useContext(UserContext);
+    const searchContext = useContext(SearchContext);
 
     useEffect(() => {
         userApi.getAllUsers().then((data) => {
-            userContext?.setUserList(data)
+            usersContext?.setUserList(data)
         });
     }, []);
+
+    const filterData = usersContext?.userList.filter((val: any) => {
+        if(searchContext?.searchText === '') {
+            return val;
+        } 
+        return val.firstName.toLowerCase().includes(searchContext?.searchText.toLowerCase());
+    })
     
     return (
         <div>
-            {userContext?.userList.length !== 0 && <Customers data={userContext?.userList} />}
+            {usersContext?.userList.length !== 0 && <Customers data={filterData} />}
         </div>
     )
 }

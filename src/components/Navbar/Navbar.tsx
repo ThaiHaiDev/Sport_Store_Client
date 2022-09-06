@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ChangeEvent, useContext } from 'react'
 
 import './Navbar.scss'
 
@@ -11,6 +11,7 @@ import ThemeMenu from '../Thememenu/Thememenu'
 import notifications from '../../assets/JsonData/notification.json'
 
 import user_menu from '../../assets/JsonData/user_menus.json'
+import { SearchContext } from '../../contexts/searchContext'
 
 const curr_user = {
     display_name: 'Hai Nguyen',
@@ -45,10 +46,16 @@ const renderUserMenu =(item:any, index:any) => (
 )
 
 const Topnav = () => {
+    const searchContext = useContext(SearchContext);
+
+    const searchChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        searchContext?.setSearchText(event.currentTarget?.value);
+    };
+    
     return (
         <div className='topnav'>
             <div className="topnav__search">
-                <input type="text" placeholder='Search here...' />
+                <input type="text" placeholder='Search here...' onChange={searchChangeHandler}/>
                 <i className='bx bx-search'></i>
             </div>
             <div className="topnav__right">

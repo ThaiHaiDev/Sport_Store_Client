@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 
 import { Link } from 'react-router-dom'
 
 import Chart from 'react-apexcharts'
 
-import { useSelector } from 'react-redux'
 
 import StatusCard from '../../components/Statuscard/Statuscard'
 
@@ -13,7 +12,6 @@ import Table from '../../components/Table/Table'
 import Badge from '../../components/Badge/Badge'
 
 import statusCards from '../../assets/JsonData/status-card-data.json'
-import { RootState } from '../../redux/store'
 
 const chartOptions = {
     options: {

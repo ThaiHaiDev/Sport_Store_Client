@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useContext, useState } from 'react';
 import userApi from '../../../services/userApi';
 import './AddCustomer.scss';
 import { AxiosError } from 'axios';
-import { AddUserErrorResponse } from '../../../share/models/user';
+import { AddUserErrorResponse, AddUserResponse } from '../../../share/models/user';
 import { UserContext } from '../../../contexts/usersContext';
 
 const AddCustomer = () => {
@@ -11,7 +11,7 @@ const AddCustomer = () => {
     const [email, setEmail] = useState<string>('')
     const [phone, setPhone] = useState<string>('')
     const [address, setAddress] = useState<string>('')
-    const [role, setRole] = useState<string | undefined | number>('customer');
+    const [role, setRole] = useState<string>('customer');
 
     const userContext = useContext(UserContext)
     
@@ -43,7 +43,7 @@ const AddCustomer = () => {
     const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const resetForm = event.target as HTMLFormElement;
-        const dataUserNew = {
+        const dataUserNew:AddUserResponse = {
             firstName,
             lastName,
             password: '123',
@@ -60,7 +60,6 @@ const AddCustomer = () => {
                 alert('Add success')
             })
             .catch((error: AxiosError<AddUserErrorResponse>) => {
-                console.log(error)
                 alert(error.response?.data?.message)
             })
     }
