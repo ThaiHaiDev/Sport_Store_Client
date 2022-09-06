@@ -12,7 +12,7 @@ interface ModalUserProps {
     dataUpdate: any;
 }
 
-const Modal = (props: any) => {
+const Modal = (props: ModalUserProps) => {
     const [firstName, setFirstName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [email, setEmail] = useState<string>('');
@@ -20,6 +20,7 @@ const Modal = (props: any) => {
     const [address, setAddress] = useState<string>('');
     const [role, setRole] = useState<string | undefined | number>('customer');
     const navigate = useNavigate();
+    const userContext = useContext(UserContext);
 
     useEffect(() => {
         setFirstName(props.dataUpdate.firstName);
@@ -54,6 +55,24 @@ const Modal = (props: any) => {
         setAddress(event.currentTarget?.value);
     };
 
+    const Update = (key:any, data:any) => {
+        for (var i = 0; i < userContext?.userList.length; i++) {
+            if (userContext?.userList[i]._id === key) {
+                // Delete user cũ
+                userContext?.setUserList(
+                    userContext?.userList.filter((user:any) => {
+                        return user._id !== key;
+                    }),
+                )
+
+                // Add user new update
+                userContext?.setUserList([data, ...userContext.userList])
+                break;
+            }
+        }
+    }
+
+
     // Submit
     const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
@@ -72,6 +91,7 @@ const Modal = (props: any) => {
             .updateUser(dataUserNew, props?.dataUpdate._id)
             .then(() => {
                 resetForm.reset();
+                Update(props?.dataUpdate._id, dataUserNew)
                 alert('Update success');
                 navigate('/')
             })

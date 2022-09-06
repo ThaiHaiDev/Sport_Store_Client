@@ -2,9 +2,9 @@ import './Signin.scss';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import userSlice from '../AuthPage/userSlice';
-import { SignInData } from '../../share/models/auth';
-import authApi from '../../services/authApi';
+import userSlice from '../userSlice';
+import { SignInData } from '../../../share/models/auth';
+import authApi from '../../../services/authApi';
 
 
 const Signin = () => {
