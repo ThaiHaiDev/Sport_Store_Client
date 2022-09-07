@@ -1,5 +1,5 @@
 import axiosClient from "../share/axios-client/axiosClient";
-import { AddCategoryResponse, AddCategoryResquest, CategoryResponse, DeleteCategoryResponse } from "../share/models/category";
+import { AddCategoryResponse, AddCategoryResquest, CategoryResponse, DeleteCategoryResponse, UpdateCategoryResponse } from "../share/models/category";
 
 const categoryApi = {
     getAllCategories(): Promise<CategoryResponse[]> {
@@ -12,8 +12,13 @@ const categoryApi = {
         return axiosClient.post(url, dataCategory);
     },
 
-    deleteCategory(idCater: string): Promise<DeleteCategoryResponse> {
-        const url = `/category/${idCater}`;
+    updateCategory(dataCate: AddCategoryResquest, idCate: string): Promise<UpdateCategoryResponse> {
+        const url = `/category/${idCate}`;
+        return axiosClient.put(url, dataCate);
+    },
+
+    deleteCategory(idCate: string): Promise<DeleteCategoryResponse> {
+        const url = `/category/${idCate}`;
         return axiosClient.delete(url);
     },
 

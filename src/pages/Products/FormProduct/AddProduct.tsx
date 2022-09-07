@@ -1,67 +1,99 @@
 import { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import userApi from '../../../services/userApi';
 import './AddProduct.scss';
 import { AxiosError } from 'axios';
-import { AddUserErrorResponse, AddUserResponse } from '../../../share/models/user';
-import { UserContext } from '../../../contexts/usersContext';
+import { CategoryContext } from '../../../contexts/categoriesContext';
+import { AddProductResquest } from '../../../share/models/product';
+import productApi from '../../../services/productApi';
+import { ProductContext } from '../../../contexts/productsContext';
 
 const AddProduct = () => {
-    const [firstName, setFirstName] = useState<string>('')
-    const [lastName, setLastName] = useState<string>('')
-    const [email, setEmail] = useState<string>('')
-    const [phone, setPhone] = useState<string>('')
-    const [address, setAddress] = useState<string>('')
-    const [role, setRole] = useState<string>('customer');
+    const [name, setName] = useState<string>('')
+    const [desc, setDesc] = useState<string>('')
+    const [videoid, setVideoid] = useState<string>('')
+    const [quantity, setQuantity] = useState<number>()
+    const [price, setPrice] = useState<number>();
+    const [category, setCategory] = useState<string>('');
+    const [fileInputState, setFileInputState] = useState('');
+    const [previewSource, setPreviewSource] = useState<any>('');
+    const [selectedFile, setSelectedFile] = useState<File>();
 
-    const userContext = useContext(UserContext)
+    const categoryContext = useContext(CategoryContext);
+    const productContext = useContext(ProductContext);
     
     const changeCategoryHandler = (event: ChangeEvent<HTMLSelectElement>) => {
-        setRole(event.currentTarget?.value);
+        setCategory(event.currentTarget?.value);
     };
 
-    const firstChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setFirstName(event.currentTarget?.value);
+    const nameChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.currentTarget?.value);
     };
 
-    const lastChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setLastName(event.currentTarget?.value);
+    const descChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setDesc(event.currentTarget?.value);
     };
 
-    const emailChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.currentTarget?.value);
+    const videoidChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setVideoid(event.currentTarget?.value);
     };
 
-    const phoneChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setPhone(event.currentTarget?.value);
+    const quantityChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setQuantity(parseInt(event.currentTarget?.value));
     };
 
-    const addressChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-        setAddress(event.currentTarget?.value);
+    const priceChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+        setPrice(parseInt(event.currentTarget?.value));
+    };
+    
+    const previewFile = (file: any) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+            setPreviewSource(reader.result);
+        };
+    };
+
+    const handleFileInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+        if (event.target.files) {
+            const file = event.target.files[0];
+            previewFile(file);
+            setSelectedFile(file);
+            setFileInputState(event.target.value);
+        }
     };
 
     // Submit 
     const submitFormHandler = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const resetForm = event.target as HTMLFormElement;
-        const dataUserNew:AddUserResponse = {
-            firstName,
-            lastName,
-            password: '123',
-            email,
-            phone, 
-            address,
-            isAdmin: role
-        }
-        
-        userApi.addUser(dataUserNew)
+        if (!selectedFile) return;
+        const reader = new FileReader();
+        reader.readAsDataURL(selectedFile);
+        reader.onloadend = () => {
+            const dataProductNew: AddProductResquest = {
+                name,
+                desc,
+                thumbnail: reader.result,
+                videoid,
+                quantity,
+                price,
+                category
+            };
+            console.log(dataProductNew)
+            productApi.addProduct(dataProductNew)
             .then((data) => {
-                userContext?.setUserList([...userContext.userList, data])
+                productContext?.setProductList([...productContext.productList, data])
                 resetForm.reset();
+                setFileInputState('')
+                setPreviewSource('')
                 alert('Add success')
             })
-            .catch((error: AxiosError<AddUserErrorResponse>) => {
+            .catch((error: AxiosError<any>) => {
                 alert(error.response?.data?.message)
             })
+        };
+        reader.onerror = () => {
+            alert('Add product failured');
+        };
     }
 
     return (
@@ -69,66 +101,68 @@ const AddProduct = () => {
             <div className="col-12">
                 <div className="card">
                     <div className="card__body">
-                        <p className="tittle__add">Please enter full user information</p> <br /> <hr /> <br /> <br />
+                        <p className="tittle__add">Please enter full product information</p> <br /> <hr /> <br /> <br />
                         <form onSubmit={submitFormHandler}>
                             <input
                                 className="input_add-user"
                                 type="text"
-                                id="first"
-                                // value='test'
-                                placeholder="First name"
+                                id="name"
+                                placeholder="Name product"
                                 autoFocus
-                                onChange={firstChangeHandler}
+                                onChange={nameChangeHandler}
                                 required
-                                // ref={props.titleRef}
                             />
                             <input
                                 className="input_add-user"
                                 type="text"
-                                id="last"
-                                // value='test'
-                                placeholder="Last name"
-                                onChange={lastChangeHandler}
+                                id="description"
+                                placeholder="Description"
+                                onChange={descChangeHandler}
                                 required
-                                // ref={props.titleRef}
                             />
                             <input
                                 className="input_add-user"
                                 type="text"
-                                id="email"
-                                // value='test'
-                                placeholder="Email name"
-                                onChange={emailChangeHandler}
+                                id="videoid"
+                                placeholder="Videoid"
+                                onChange={videoidChangeHandler}
                                 required
-                                // ref={props.titleRef}
                             />
                             <input
                                 className="input_add-user"
                                 type="text"
-                                id="phone"
-                                // value='test'
-                                placeholder="Phone"
-                                onChange={phoneChangeHandler}
+                                id="quantity"
+                                placeholder="Quantity"
+                                onChange={quantityChangeHandler}
                                 required
-                                // ref={props.titleRef}
                             />
                             <input
                                 className="input_add-user"
                                 type="text"
-                                id="address"
-                                // value='test'
-                                placeholder="Address"
-                                onChange={addressChangeHandler}
+                                id="price"
+                                placeholder="Price"
+                                onChange={priceChangeHandler}
                                 required
-                                // ref={props.titleRef}
                             />
-                            <label className="select__role">Role</label>
+
+                            <label className="select__role">Category</label>
                             <select name="role" className="select" onChange={changeCategoryHandler}>
-                                <option value="customer">Customer</option>
-                                <option value="manager">Manager</option>
+                                <option value=''>------</option>
+                                {categoryContext?.categoryList.map((cate: any) => (<option value={cate._id} key={cate._id}>{cate.name}</option>))}
                             </select>
-                            
-                            <br />
+                            <input
+                                id="fileInput"
+                                type="file"
+                                name="image"
+                                onChange={handleFileInputChange}
+                                value={fileInputState}
+                                className="form-input"
+                                required
+                            />
+
+                            {previewSource && <img src={previewSource} alt="chosen" style={{ height: '150px', width: '150px' }} />}
+
+                            <br /> <br />
                             <button className='btn-save' type="submit">
                                 Save
                             </button>

@@ -30,3 +30,20 @@ export interface DeleteCategoryResponse {
     message: string;
 }
 
+export interface UpdateCategoryResponse {
+    message: string;
+}
+
+export interface AddCategoryErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}
+
+export interface UpdateCategoryErrorResponse {
+    message: string;
+    errors: {
+        user?: string;
+    };
+}

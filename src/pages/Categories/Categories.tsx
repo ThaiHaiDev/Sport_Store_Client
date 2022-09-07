@@ -52,8 +52,8 @@ const Categories = (props: any) => {
         })
     }
 
-    const handleUpdateCategory = async(user: any) => {
-        await setCategoryUpdate(user)
+    const handleUpdateCategory = async(cate: any) => {
+        await setCategoryUpdate(cate)
         setOnModal(true)
     }
 

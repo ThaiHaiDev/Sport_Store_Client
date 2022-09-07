@@ -82,7 +82,7 @@ const AddCategory = () => {
             <div className="col-12">
                 <div className="card">
                     <div className="card__body">
-                        <p className="tittle__add">Please enter full user information</p> <br /> <hr /> <br /> <br />
+                        <p className="tittle__add">Please enter full category information</p> <br /> <hr /> <br /> <br />
                         <form onSubmit={submitFormHandler}>
                             <input
                                 className="input_add-category"
@@ -121,7 +121,8 @@ const AddCategory = () => {
 
                             {previewSource && <img src={previewSource} alt="chosen" style={{ height: '150px', width: '150px' }} />}
 
-                            <br />
+                            <br /> <br />
+
                             <button className="btn-save" type="submit">
                                 Save
                             </button>
