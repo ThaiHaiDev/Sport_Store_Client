@@ -38,6 +38,25 @@
     --border-radius: 15px;
     --topnav-height: 110px;
     --transition-cubic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    // Customer
+    --red: #ff3838;
+    --white: #ffffff;
+    --black: #000000;
+
+    --red-one: #CB356B;
+    --red-two: #BD3F32;
+
+    --green-one: #56ab2f;
+    --green-two: #94d049;
+
+    --black-one: #232526;
+    --black-two: #70767b;
+
+    --blue-one: #021B79;
+    --blue-two: #0575E6;
+
+    --silver: #bdc3c7;
 }
 
 * {
@@ -47,11 +66,12 @@
     -webkit-tap-highlight-color: transparent;
 }
 
-body {
+body, html {
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 0.7px;
+    margin: 0;
 }
 
 a {
@@ -151,3 +171,25 @@ input:focus {
     background-color: var(--main-color-orange);
     color: #fff;
 }
+
+// Customer
+.bg-red {
+    background-color: var(--red);
+}
+
+.bg-white {
+    background-color: var(--white);
+}
+
+.bg-black {
+    background-color: var(--black);
+}
+
+.bg-blue {
+    background-color: var(--blue-one);
+}
+
+.bg-green {
+    background-color: var(--green-one);
+}
+
