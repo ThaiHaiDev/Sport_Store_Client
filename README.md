@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+# Big project Typescript (updating...)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description (updating...)
+<details>
+<summary><b>English</b></summary><br />
 
-## Available Scripts
+Using technologies: Typescript, React, Scss, Redux-toolkit, react-router-v6, useContext, refreshToken,...
 
-In the project directory, you can run:
+Written entirely in Typescript, in addition, the interface uses pure scss to learn more scss knowledge.
 
-### `npm start`
+The website is built in the direction of eCommerce and includes sports articles:
++ About eCommerce: 1 website store surrounded by sports, especially shoes and clothes of basketball, football, ...
++ About News news articles: update information of sports leagues and players in the village of NBA, Premier league, ...
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+With 2 interface components:
++ Dashboard for admin (with Dask Mode): access with an account with admin rights will be taken to the Management Dashboard.
++ Page for customers: like regular eCommerce sites.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+***Currently the website is still being updated with the necessary functions, the update will be regularly updated here. Thank you!***
 
-### `npm test`
+***Pure CSS is learned from Mr. TuatTranAnh. Thanks and good job bro!***
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+</details>
 
-### `npm run build`
+<details>
+<summary><b>Vietnamese</b></summary><br />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Sử dụng các công nghệ: Typescript, React, Scss, Redux-toolkit, react-router-v6, useContext, refreshToken,...
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Được viết hoàn toàn bằng Typescript, ngoài ra giao diện thì sử dụng thuần scss để học thêm kiến thức scss.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Trang web được xây dựng phát triển theo hướng eCommerce và có kèm theo các bài báo về thể thao:
++ Về eCommerce: 1 trang web store bao quanh về thể thao, đặc biệt là giày và quần áo của các đội bóng rổ, bóng đá, ...
++ Về News thông tin các bài báo: cập nhật thông tin của các giải thể thao và cầu thủ trong làng NBA, Premier league, ...
 
-### `npm run eject`
+Với 2 thành phần giao diện:
++ Dashboard dành cho admin (có chế độ Dask Mode): truy cập bằng account có quyền admin sẽ được đưa đến Dashboard quản lý.
++ Page dành cho khách hàng: như các trang eCommerce thông thường.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+***Hiện tại webside vẫn đang được tiếp tục update các chức năng cần thiết, phần cập nhật sẽ thường xuyên được update tại đây. Xin cảm ơn!***
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+***Css thuần được học hỏi từ anh TuatTranAnh. Thanks and good job bro!***
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+</details>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br />
 
-## Learn More
+## Preview (updating...)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Home Page
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Product
+
+### News topic
+
+### Cart
+
+### Signin
+
+### Signup
+
+### Dashboard
+
+### Manager Customer
+
+### Manager Product
+
+### Manager Category
+
+### Manager Products On Top To Advertise 
+
+### Statistical Page
+

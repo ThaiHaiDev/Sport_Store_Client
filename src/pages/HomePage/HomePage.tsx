@@ -5,7 +5,6 @@ import newsOnTopApi from '../../services/newsontopApi';
 import './HomePage.scss';
 import InfoProductHome from './InfoProductHome/InfoProductHome';
 import ListProductImageHome from './ListProductImageHome/ListProductImageHome';
-const delay = 2500;
 
 const HomePage = () => {
     const [dataNews, setDataNews] = useState([]) 
