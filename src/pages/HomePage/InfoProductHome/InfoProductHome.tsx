@@ -1,12 +1,14 @@
-const InfoProductHome = () => {
+
+
+const InfoProductHome = (props: any) => {
     return (
         <div className="product-info">
             <div className="info-wrapper">
                 <div className="product-price left-to-right">
-                    <span>$</span>230
+                    <span>$</span>{props.info.price}
                 </div>
                 <div className="product-name left-to-right">
-                    <h2>The Nike ZoomX Vaporfly NEXT%</h2>
+                    <h2>{props.info.name}</h2>
                 </div>
                 <div className="product-size left-to-right">
                     <h3>Size</h3>
@@ -34,11 +36,7 @@ const InfoProductHome = () => {
                     </div>
                 </div>
                 <div className="product-desc left-to-right">
-                    <p>
-                        The Nike ZoomX Vaporfly NEXT% clears your path to record-breaking speed with a lighter design
-                        and faster feel than before. With more cushioning underfoot and reduced weight up top, the
-                        result is unprecedented energy return and comfort
-                    </p>
+                    <p>{props.info.desc}</p>
                 </div>
                 <div className="btn-cart__home left-to-right">
                     <button>Add to cart</button>

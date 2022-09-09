@@ -1,6 +1,5 @@
 import { NavLink} from "react-router-dom";
 import './NavbarCustomer.scss'
-
 import logo from '../../assets/images/inside-sport-logo.png';
 
 const NavbarCustomer = () => {

@@ -1,4 +1,10 @@
-const ListProductImageHome = () => {
+interface SetModal {
+    onClick: (value: boolean) => void;
+    listImg?: any
+}
+
+const ListProductImageHome = (props: SetModal) => {
+    
     return (
         <div className="product-image">
             {/* Product image  */}
@@ -6,7 +12,7 @@ const ListProductImageHome = () => {
                 <div className="img-wrapper right-to-left">
                     <div className="bounce">
                         <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG.png"
+                            src={props.listImg.thumbnail}
                             alt="placeholderimage"
                         />
                     </div>
@@ -16,32 +22,33 @@ const ListProductImageHome = () => {
 
             {/* Product more images */}
             <div className="more-images">
-                <div className="more-images-item bottom-up">
+                <div className="more-images-item bottom-up" onClick={() => props.onClick(true)}>
                     <img
-                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG-1.jpg"
+                        src={props.listImg.picture_item_1}
                         alt="placeholderimage"
                     />
                 </div>
                 <div className="more-images-item bottom-up">
                     <img
-                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG (1).jpg"
+                        src={props.listImg.picture_item_2}
                         alt="placeholderimage"
                     />
                 </div>
                 <div className="more-images-item bottom-up">
                     <img
-                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG (2).jpg"
+                        src={props.listImg.picture_item_3}
                         alt="placeholderimage"
                     />
                 </div>
                 <div className="more-images-item bottom-up">
                     <img
-                        src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG (3).jpg"
+                        src={props.listImg.picture_item_4}
                         alt="placeholderimage"
                     />
                 </div>
             </div>
             {/* End product more images */}
+
         </div>
     );
 };
