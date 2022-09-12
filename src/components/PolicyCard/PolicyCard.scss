@@ -1,0 +1,33 @@
+.policy-card {
+    padding: 10px 10px 20px 20px !important;
+    transition: transform 0.5s ease;
+    background: white;
+    display: flex;
+
+    &:hover {
+        transform: translateY(-20px);
+    }
+
+    &__icon {
+        width: 40%;
+        padding-top: 10px;
+        i {
+            font-size: 2.5rem;
+        }
+    }
+
+    &__info {
+        &__name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            padding-top: 10px;
+            margin-left: -50px;
+        }
+
+        &__description {
+            font-size: 0.8rem;
+            margin-left: -50px;
+        }
+    }
+}

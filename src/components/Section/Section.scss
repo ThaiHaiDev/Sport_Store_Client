@@ -1,0 +1,19 @@
+.section {
+    margin-bottom: 80px;
+    width: 100vw;
+
+    & > * ~ * {
+        margin-top: 70px;
+    }
+
+    .section__body {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    &__title {
+        font-size: 1.6rem;
+        text-transform: capitalize;
+        text-align: center;
+    }
+}
