@@ -1,5 +1,5 @@
 .section {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
     width: 100vw;
 
     & > * ~ * {
@@ -12,8 +12,10 @@
     }
     
     &__title {
+        margin-top: 30px;
         font-size: 1.6rem;
         text-transform: capitalize;
         text-align: center;
+        font-weight: bold;
     }
 }

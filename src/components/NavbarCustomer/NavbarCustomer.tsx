@@ -2,9 +2,9 @@ import { NavLink} from "react-router-dom";
 import './NavbarCustomer.scss'
 import logo from '../../assets/images/inside-sport-logo.png';
 
-const NavbarCustomer = () => {
+const NavbarCustomer = (props: any) => {
     return (
-        <div className="navbar">
+        <div className="navbar" style={{backgroundColor: `${props.bg_color ? props.bg_color : ''}`}}>
             <NavLink to="#" className="logo">
                 <div className="sidebar__logo">
                     <img src={logo} alt="company logo" className="logo-bg"/>

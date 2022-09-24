@@ -7,7 +7,7 @@ const productApi = {
         return axiosClient.get(url);
     },
 
-    addProduct(dataProduct: any): Promise<AddProductResponse> {
+    addProduct(dataProduct: AddProductResquest): Promise<AddProductResponse> {
         const url = "/product";
         return axiosClient.post(url, dataProduct);
     },

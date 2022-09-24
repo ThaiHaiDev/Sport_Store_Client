@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../../components/Footer/Footer';
 import ModalImage from '../../components/ModalImage/ModalImage';
-import NavbarCustomer from '../../components/NavbarCustomer/NavbarCustomer';
 import PolicyCard from '../../components/PolicyCard/PolicyCard';
+import ProductCard from '../../components/ProductCard/ProductCard';
 import Section, { SectionBody, SectionTitle } from '../../components/Section/Section';
 import newsOnTopApi from '../../services/newsontopApi';
+import productApi from '../../services/productApi';
+import { ProductResponse } from '../../share/models/product';
 import policy from '../../utils/policy';
 import './HomePage.scss';
 import InfoProductHome from './InfoProductHome/InfoProductHome';
@@ -13,6 +15,7 @@ import ListProductImageHome from './ListProductImageHome/ListProductImageHome';
 
 const HomePage = () => {
     const [dataNews, setDataNews] = useState([]);
+    const [dataPopular, setDataPopular] = useState<ProductResponse[]>([]);
     const [active, setActive] = useState<boolean>(false);
     const [findIndex, setFindIndex] = useState<number>(0);
     const [onModal, setOnModal] = useState<boolean>(false);
@@ -32,7 +35,9 @@ const HomePage = () => {
         (async () => {
             try {
                 const data = await newsOnTopApi.getAllNewsOnTop();
+                const productPopular = await productApi.getAllProducts();
                 setDataNews(data);
+                setDataPopular(productPopular.slice(0, 4));
             } catch (error) {
                 console.log(error);
             }
@@ -45,7 +50,6 @@ const HomePage = () => {
 
     return (
         <div className="home__page">
-            <NavbarCustomer />
             <div className={active ? 'active slider' : 'slider'}>
                 {dataNews?.map((data: any, index: any) => {
                     if (index === findIndex) {
@@ -66,30 +70,20 @@ const HomePage = () => {
 
                 {/* SLIDE CONTROL  */}
                 <div id="slide-control" className="slide-control">
-                    <div className="slide-control-item" onClick={() => handleSlideChange(0)}>
-                        <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoomx-vaporfly-next-running-shoe-4Q5jfG.png"
-                            alt="placeholderimage"
-                        />
-                    </div>
-                    <div className="slide-control-item" onClick={() => handleSlideChange(1)}>
-                        <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/zoom-fly-3-mens-running-shoe-XhzpPH.png"
-                            alt="placeholderimage"
-                        />
-                    </div>
-                    <div className="slide-control-item">
-                        <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/air-max-alpha-tr-3-mens-training-shoe-0C1CV7.png"
-                            alt="placeholderimage"
-                        />
-                    </div>
-                    <div className="slide-control-item">
-                        <img
-                            src="https://raw.githubusercontent.com/ThaiHaiDev/StoreImage/main/Sport_store/air-zoom-superrep-mens-hiit-class-shoe-ZWLnJW (1).png"
-                            alt="placeholderimage"
-                        />
-                    </div>
+                    {dataNews?.map((data: any, index: any) => {
+                        if (index === findIndex) {
+                            return (
+                                <div className="slide-control-item active" onClick={() => handleSlideChange(index)}>
+                                    <img src={data.thumbnail} alt="placeholderimage" />
+                                </div>
+                            );
+                        }
+                        return (
+                            <div className="slide-control-item" onClick={() => handleSlideChange(index)}>
+                                <img src={data.thumbnail} alt="placeholderimage" />
+                            </div>
+                        );
+                    })}
                 </div>
                 {/* END SLIDE CONTROL  */}
             </div>
@@ -113,10 +107,25 @@ const HomePage = () => {
             {/* End policy  */}
 
             {/* best selling section */}
-            <Section>
-                <SectionTitle>top sản phẩm bán chạy trong tuần</SectionTitle>
-                <SectionBody></SectionBody>
-            </Section>
+            <div className="product__card">
+                <Section>
+                    <SectionTitle>top sản phẩm bán chạy trong tuần</SectionTitle>
+                    <SectionBody>
+                        {dataPopular?.map((item: any, index: any) => (
+                            <div className="col-product__card">
+                                <ProductCard
+                                    key={index}
+                                    thumbnail={item.thumbnail}
+                                    pictures={item.pictures}
+                                    name={item.name}
+                                    price={Number(item.price)}
+                                    slug={item.slug}
+                                />
+                            </div>
+                        ))}
+                    </SectionBody>
+                </Section>
+            </div>
             {/* end best selling section */}
 
             {/* Footer  */}
