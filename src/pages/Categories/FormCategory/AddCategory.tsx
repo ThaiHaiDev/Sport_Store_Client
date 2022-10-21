@@ -43,6 +43,7 @@ const AddCategory = () => {
             setSelectedFile(file);
             setFileInputState(event.target.value);
         }
+        
     };
 
     // Submit
@@ -52,6 +53,7 @@ const AddCategory = () => {
         if (!selectedFile) return;
         const reader = new FileReader();
         reader.readAsDataURL(selectedFile);
+        console.log(reader.result)
         reader.onloadend = () => {
             const dataCategoryNew: AddCategoryResquest = {
                 name,

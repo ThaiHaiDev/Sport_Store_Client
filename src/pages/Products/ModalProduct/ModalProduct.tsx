@@ -84,22 +84,12 @@ const ModalProduct = (props: ModalProductUserProps) => {
     };
 
     const Update = (key: any, data: any) => {
-        if (productContext?.productList.length) {
-            for (var i = 0; i < productContext?.productList.length; i++) {
-                if (productContext?.productList[i]._id === key) {
-                    // Delete product cũ
-                    productContext?.setProductList(
-                        productContext?.productList.filter((product: any) => {
-                            return product._id !== key;
-                        }),
-                    );
-
-                    // Add user new update
-                    productContext?.setProductList([data, ...productContext?.productList]);
-                    break;
-                }
+        productContext?.setProductList(productContext?.productList.map(pro => {
+            if (pro._id === key) {
+                pro = data
             }
-        }
+            return pro;
+        }));
     };
 
     // Submit

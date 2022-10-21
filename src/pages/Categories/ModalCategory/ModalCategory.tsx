@@ -63,22 +63,12 @@ const ModalCategory = (props: ModalCategoryUserProps) => {
     };
 
     const Update = (key:any, data:any) => {
-        if(categoryContext?.categoryList.length) {
-            for (var i = 0; i < categoryContext?.categoryList.length; i++) {
-                if (categoryContext?.categoryList[i]._id === key) {
-                    // Delete user cũ
-                    categoryContext?.setCategoryList(
-                        categoryContext?.categoryList.filter((user:any) => {
-                            return user._id !== key;
-                        }),
-                    )
-    
-                    // Add user new update
-                    categoryContext?.setCategoryList([data, ...categoryContext.categoryList])
-                    break;
-                }
+        categoryContext?.setCategoryList(categoryContext?.categoryList.map(cate => {
+            if (cate._id === key) {
+                cate = data
             }
-        }
+            return cate;
+        }));
     }
 
 

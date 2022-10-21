@@ -56,22 +56,12 @@ const Modal = (props: ModalUserProps) => {
     };
 
     const Update = (key:any, data:any) => {
-        if(userContext?.userList.length) {
-            for (var i = 0; i < userContext?.userList.length; i++) {
-                if (userContext?.userList[i]._id === key) {
-                    // Delete user cũ
-                    userContext?.setUserList(
-                        userContext?.userList.filter((user:any) => {
-                            return user._id !== key;
-                        }),
-                    )
-    
-                    // Add user new update
-                    userContext?.setUserList([data, ...userContext.userList])
-                    break;
-                }
+        userContext?.setUserList(userContext?.userList.map(user => {
+            if (user._id === key) {
+                user = data
             }
-        }
+            return user;
+        }));
     }
 
 
