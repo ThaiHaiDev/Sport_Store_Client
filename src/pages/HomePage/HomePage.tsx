@@ -111,18 +111,20 @@ const HomePage = () => {
                 <Section>
                     <SectionTitle>top sản phẩm bán chạy trong tuần</SectionTitle>
                     <SectionBody>
-                        {dataPopular?.map((item: any, index: any) => (
-                            <div className="col-product__card">
-                                <ProductCard
-                                    key={index}
-                                    thumbnail={item.thumbnail}
-                                    pictures={item.pictures}
-                                    name={item.name}
-                                    price={Number(item.price)}
-                                    slug={item.slug}
-                                />
-                            </div>
-                        ))}
+                        <div className="row">
+                            {dataPopular?.map((item: any, index: any) => (
+                                <div className="col-3 col-md-4 col-sm-6 ">
+                                    <ProductCard
+                                        key={index}
+                                        thumbnail={item.thumbnail}
+                                        pictures={item.pictures}
+                                        name={item.name}
+                                        price={Number(item.price)}
+                                        slug={item.slug}
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </SectionBody>
                 </Section>
             </div>

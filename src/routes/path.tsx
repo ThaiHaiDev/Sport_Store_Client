@@ -3,7 +3,7 @@ import HomePage from "../pages/HomePage/HomePage"
 
 const publicRouter = {
     test: [
-        { path: '/', component: HomePage },
+        // { path: '/', component: HomePage },
         { path: '/about', component: AboutPage },
     ]
 }

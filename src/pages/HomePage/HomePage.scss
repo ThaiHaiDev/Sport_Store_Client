@@ -338,6 +338,8 @@
     width: 100%;
     padding: 0;
     background: var(--bghome);
+    padding-left: 50px;
+    padding-right: 50px;
 
     .col-policy {
         flex: 0 0 25%;
@@ -350,12 +352,11 @@
 }
 
 .product__card {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: 40px;
-    margin-right: 40px;
-    .col-product__card {
-        flex: 0 0 25%;
-        max-width: 25%;
+    .row {
+        width: 100%;
+        padding-left: 60px;
+        padding-right: 60px;
     }
 }
+
+

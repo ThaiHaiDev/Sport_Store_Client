@@ -1,12 +1,13 @@
 .product-card {
     text-align: center;
     margin-bottom: 30px;
+    font-family: 'Times New Roman', Times, serif;
 
     &__image {
         padding-top: 100%;
         position: relative;
         overflow: hidden;
-        margin-bottom: 30px;
+        margin-bottom: 5px;
 
         img {
             position: absolute;
@@ -16,6 +17,7 @@
             height: 100%;
             width: 100%;
             padding: 10px;
+            border-radius: 20px;
 
             &:nth-child(1) {
                 transform: translateX(-50%) scale(1);
@@ -47,15 +49,16 @@
     }
 
     &__price {
-        color: black;
-        font-size: 1.5rem;
+        color: red;
+        font-size: 1.2rem;
         font-weight: 600;
         margin-bottom: 10px;
 
         &__old {
-            color: black;
+            color: var(--txt-color-dark);
             margin-left: 20px;
             font-weight: 300;
+            margin-right: 15px;
         }
     }
 
