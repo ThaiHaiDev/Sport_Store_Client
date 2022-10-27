@@ -1,0 +1,47 @@
+.catalog {
+    margin-top: 100px;
+    display: flex;
+   
+
+    &__filter {
+        width: 20%;
+        padding-left: 40px;
+
+        &.active {
+            transform: translateX(0);
+        }
+
+        &__widget {
+            margin-bottom: 2rem;
+
+            &__title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                text-transform: capitalize;
+                margin-bottom: 16px;
+            }
+
+            &__content {
+                color: black;
+
+                &__item {
+                    margin-bottom: 13px;
+                }
+            }
+        }
+
+        &__close {
+            display: none;
+        }
+    }
+
+    &__content {
+        flex-grow: 1;
+        width: 80%;
+    }
+
+    &__filter__toggle {
+        display: none;
+
+    }
+}

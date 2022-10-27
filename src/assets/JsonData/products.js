@@ -1,39 +1,39 @@
-const product_01_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_01_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-// const product_01_image_03 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_01_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_01_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+// const product_01_image_03 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_02_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_02_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_02_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_02_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_03_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_03_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_03_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_03_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_04_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_04_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_04_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_04_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_05_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_05_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_05_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_05_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_06_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_06_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_06_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_06_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_07_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_07_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_07_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_07_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_08_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_08_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_08_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_08_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_09_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_09_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_09_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_09_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_10_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_10_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_10_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_10_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_11_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_11_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_11_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_11_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
-const product_12_image_01 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
-const product_12_image_02 = require('http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg').default
+const product_12_image_01 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
+const product_12_image_02 = 'http://res.cloudinary.com/dx77zmhpz/image/upload/v1664035655/sport_store/rijevyrrpfkanyux5wvb.jpg'
 
 const products = [
     {
